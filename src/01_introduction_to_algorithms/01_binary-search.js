@@ -5,19 +5,18 @@
  * @returns {(number|null)} Number if the value is found or NULL otherwise
  */
 const binarySearch = (list, item) => {
-  let low = 0;
-  let high = list.length - 1;
+  let start = 0;
+  let end = list.length - 1;
 
-  while (low <= high) {
-    const mid = Math.floor((low + high) / 2);
-    const guess = list[mid];
+  while (end >= start) {
+    let mid = Math.ceil((end + start) / 2);
 
-    if (guess === item) {
-      return mid;
-    } else if (guess > item) {
-      high = mid - 1;
+    if (list[mid] > item) {
+      end = mid - 1;
+    } else if (list[mid] < item) {
+      start = mid + 1;
     } else {
-      low = mid + 1;
+      return mid;
     }
   }
 
